@@ -1,0 +1,19 @@
+<p>This is a project that combines both the <a href="http://www.retrosheet.org/">Retrosheet</a> game logs and player data with <a href="http://www.seanlahman.com/baseball-archive/statistics/">Sean Lahman’s Baseball Database</a> for the years 1920 through 2012 with data provided as JSON documents.</p>
+
+<p>The reason this exists is to allow querying of Retrosheet’s excellent historical along side Lahman’s excellent statistical data.</p>
+
+<p>Data available (described as paths):</p>
+
+<ul>
+<li><code>/players/{id}</code></li>
+
+<li><code>/games/{team_id}/{year}/{game_number}</code></li>
+
+<li><code>/teams/{year}/{team_id}</code></li>
+
+<li><code>/seasons/{year}/{team_id}</code></li>
+</ul>
+
+<p>Schemas for the JSON documents and some examples of querying can be found below.</p>
+
+<p>For now data will be distributed as a <a href="https://www.docker.io/gettingstarted/">Docker</a> container with a <a href="http://couchdb.apache.org/">CouchDB</a> database.</p>

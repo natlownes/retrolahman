@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+  <title>Retrolahman Baseball Database</title>
+  <meta charset='utf-8'/>
+  <meta name='description' content='Documentation website'/>
+  <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+  <link href='assets.css' rel='stylesheet' type='text/css'>
+</head>
+<body>  
+  <nav id='sidebar'>
+	<h1>Retrolahman Baseball Database</h1>
+<ul id='links'>
+  
+    
+    <li><a href='#/introduction'>Introduction</a></li>
+    
+  
+    
+    <li><a href='#/installation'>Installation</a></li>
+    
+  
+  
+</ul>
+</nav>
+
+<section id='content'>
+
+  <article class=''>
+    <a name='/introduction' href='#/introduction'><h2>Introduction</h2></a>
+    <section class='body'>
+      <p>This is a project that combines both the <a href="http://www.retrosheet.org/">Retrosheet</a> game logs and player data with <a href="http://www.seanlahman.com/baseball-archive/statistics/">Sean Lahman’s Baseball Database</a> for the years 1920 through 2012 with data provided as JSON documents.</p>
+
+<p>The reason this exists is to allow querying of Retrosheet’s excellent historical along side Lahman’s excellent statistical data.</p>
+
+<p>Data available (described as paths):</p>
+
+<ul>
+<li><code>/players/{id}</code></li>
+
+<li><code>/games/{team_id}/{year}/{game_number}</code></li>
+
+<li><code>/teams/{year}/{team_id}</code></li>
+
+<li><code>/seasons/{year}/{team_id}</code></li>
+</ul>
+
+<p>Schemas for the JSON documents and some examples of querying can be found below.</p>
+
+<p>For now data will be distributed as a <a href="https://www.docker.io/gettingstarted/">Docker</a> container with a <a href="http://couchdb.apache.org/">CouchDB</a> database.</p>
+    </section>
+  </article>
+
+  <article class=''>
+    <a name='/installation' href='#/installation'><h2>Installation</h2></a>
+    <section class='body'>
+      <ul>
+<li><a href="https://www.docker.io/gettingstarted/#h_installation">Install Docker</a>
+<ul>
+<li><a href="https://www.docker.io/gettingstarted/#h_installation">Linux</a></li>
+
+<li><a href="http://docs.docker.io/en/latest/installation/mac/">OS X/Linux</a></li>
+
+<li><a href="http://docs.docker.io/en/latest/installation/windows/">Windows</a></li>
+</ul>
+</li>
+
+<li>Pull image: <code>docker pull narf/retrolahman:latest</code></li>
+
+<li>Start db: <code>docker run -i -p 5984:5984 narf/retrolahman</code></li>
+
+<li>Wait for the db to start. You’ll see <code>Apache CouchDB has started. Time to
+relax</code> when finished.</li>
+
+<li>open <a href="http://localhost:5984/_utils/">http://localhost:5984/_utils/</a> in your browser. You should see a couch DB UI.</li>
+</ul>
+    </section>
+  </article>
+
+</section>
+
+  
+  <!--[if lt IE 9]><script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script><![endif]-->
+  <script src='assets.js' type='text/javascript'></script>
+  <script>require('boot');</script>
+</body>
+</html>
