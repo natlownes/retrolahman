@@ -1,9 +1,10 @@
-var sys = require("sys"),
+var fs   = require("fs"),
     http = require("http"),
-    url = require("url"),
-    util = require("util"),
     path = require("path"),
-    fs = require("fs");
+    url  = require("url"),
+    util = require("util"),
+    sys  = require("sys"),
+    zlib = require('zlib');
 
 var port = parseFloat(process.argv[2]) || 8081;
 
@@ -37,8 +38,10 @@ var options = function(request) {
 
 var getHeaders = function (response) {
   headers = response.headers
+  delete headers['content-length']
   headers['Access-Control-Allow-Origin']  = '*';
   headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS';
+  headers['Content-Encoding'] = 'gzip';
   return headers;
 }
 
@@ -51,7 +54,7 @@ http.createServer(function(request, response) {
     remoteResponse.on('end', function () {
       sys.log("<-- " + response.statusCode + " " +  request.url);
     });
-    remoteResponse.pipe(response)
+    remoteResponse.pipe(zlib.createGzip()).pipe(response);
   });
   request.pipe(remoteRequest)
 }).listen(port);
